@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="signalrModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="mensajes">
+    <Key>
+      <PropertyRef Name="IdMensajes" />
+    </Key>
+    <Property Name="IdMensajes" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Canal" Type="int" />
+    <Property Name="Emisor" Type="int" />
+    <Property Name="Receptor" Type="int" />
+    <Property Name="Mensaje" Type="varchar" MaxLength="255" />
+    <Property Name="Fecha" Type="datetime" />
+  </EntityType>
+  <EntityType Name="personas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="Apellido" Type="varchar" MaxLength="50" />
+    <Property Name="fecha" Type="datetime" />
+    <Property Name="canal" Type="int" />
+  </EntityType>
+  <EntityContainer Name="signalrModelStoreContainer">
+    <EntitySet Name="mensajes" EntityType="Self.mensajes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="personas" EntityType="Self.personas" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

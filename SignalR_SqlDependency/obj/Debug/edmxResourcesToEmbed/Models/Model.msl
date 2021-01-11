@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="signalrModelStoreContainer" CdmEntityContainer="signalrEntities">
+    <EntitySetMapping Name="personas">
+      <EntityTypeMapping TypeName="signalrModel.persona">
+        <MappingFragment StoreEntitySet="personas">
+          <ScalarProperty Name="canal" ColumnName="canal" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mensajes">
+      <EntityTypeMapping TypeName="signalrModel.mensaje">
+        <MappingFragment StoreEntitySet="mensajes">
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Mensaje1" ColumnName="Mensaje" />
+          <ScalarProperty Name="Receptor" ColumnName="Receptor" />
+          <ScalarProperty Name="Emisor" ColumnName="Emisor" />
+          <ScalarProperty Name="Canal" ColumnName="Canal" />
+          <ScalarProperty Name="IdMensajes" ColumnName="IdMensajes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

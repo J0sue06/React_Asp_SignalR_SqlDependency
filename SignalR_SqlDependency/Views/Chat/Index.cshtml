@@ -1,0 +1,17 @@
+﻿
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet" />
+<link href="~/Content/chatCss.css" rel="stylesheet" />
+
+
+@Html.Hidden("Url", Url.Action("Get", "Chat"))
+
+<div id="root"></div>
+
+@section scripts{
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/react/dist/bundle.js"></script>
+}

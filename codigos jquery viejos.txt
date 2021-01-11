@@ -1,0 +1,122 @@
+<script type="text/javascript">
+        //$(function () {
+        //    let hub = $.connection.chatHub;
+
+        //    hub.client.chatNotifications = function () {
+        //        getdata();
+        //    }
+
+        //    hub.client.chatConversacion = function () {
+        //        conversacion();
+        //    }
+
+        //    $.connection.hub.start();
+        //    //getdata();
+        //    conversacion();
+        //});
+
+        function conversacion() {
+            let msj = '';
+            let $tbl = $('.msg_history');
+            $.ajax({
+                url: '/Chat/Conversacion',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $tbl.empty();
+
+                    $.each(data.list, function (i, model) {
+                        var d = new Date(model.fecha);
+                        var strDate = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+                        if (model.Emisor != "1") {
+                            msj = '<div class="incoming_msg">' +
+                                '<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>' +
+                                '<div class="received_msg">' +
+                                '<div class="received_withd_msg">' +
+                                '<p>' + model.Mensaje1 +
+                                '</p>' +
+                                '<span class="time_date"> 11:01 AM    |    June 9</span>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>';
+                        }
+                        else {
+                            msj = '<div class="outgoing_msg">' +
+                                '<div class="sent_msg">' +
+                                '<p>' + model.Mensaje1 + '</p>' +
+                                '<span class="time_date">' + '11:01 AM    |    June 9' + '</span>' +
+                                '</div>' +
+                                '</div>';
+                        }
+                        $tbl.append(msj);
+
+                    });// Fin del foreach
+
+
+                }, // Fin del success
+                error: function (err) {
+                    console.error(err.responseText);
+                }
+
+            });//Fin del AJAX
+
+        }
+
+        function getdata() {
+
+            let $tbl = $('.inbox_chat');
+            $.ajax({
+                url: $('#Url').val(),
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#recientes').html(data.list.length);
+                    $tbl.empty();
+
+                    $.each(data.list, function (i, model) {
+                        var d = new Date(model.fecha);
+                        var strDate = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+                        $tbl.append
+                            (
+                                '<div class="chat_list">' +
+                                '<div class="chat_people">' +
+                                '<div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>' +
+                                '<div class="chat_ib">' +
+                                '<h5>' + model.Nombre + ' ' + model.Apellido + '<span class="chat_date">' + strDate + '</span></h5>' +
+                                '<p>' + model.canal + '</p>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>'
+                            );
+                    });// Fin del foreach
+
+
+                }, // Fin del success
+                error: function (err) {
+                    console.error(err.responseText);
+                }
+
+            });//Fin del AJAX
+
+        }
+
+        $('.msg_send_btn').click(function (e) {
+            e.preventDefault();
+            let mensaje = $('.write_msg').val();
+            if (mensaje != null) {
+                $.ajax({
+                    url: '/Chat/Enviar',
+                    data: { Mensaje: mensaje, Canal: '1', Emisor: '1', Receptor: '2' },
+                    success: function (res) {
+                        $('.write_msg').val('');
+                    },
+                    error: function (err) {
+                        console.error(err.responseText);
+                    }
+                });
+
+            }
+        });
+
+
+    </script>
